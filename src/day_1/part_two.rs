@@ -10,8 +10,8 @@ pub fn calculate_similarity(input: &str) -> usize {
         let left = iter.next().unwrap().parse::<usize>().unwrap();
         let right = iter.next().unwrap().parse::<usize>().unwrap();
 
-        *right_count.entry(right).or_default() += 1;
         *left_count.entry(left).or_default() += 1;
+        *right_count.entry(right).or_default() += 1;
     }
 
     for (number, count) in right_count {
