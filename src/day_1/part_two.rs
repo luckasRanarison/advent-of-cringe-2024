@@ -14,8 +14,10 @@ pub fn calculate_similarity(input: &str) -> usize {
         *right_count.entry(right).or_default() += 1;
     }
 
-    for (number, count) in right_count {
-        result += number * count * left_count.remove(&number).unwrap_or_default();
+    for (number, right_count) in right_count {
+        if let Some(&left_count) = left_count.get(&number) {
+            result += number * right_count * left_count;
+        }
     }
 
     result
